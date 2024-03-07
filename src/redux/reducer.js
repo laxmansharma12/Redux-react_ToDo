@@ -4,6 +4,7 @@ import {
 	MARK_COMPLETED,
 	MARK_INCOMPLETE,
 	FILTER_TODOS,
+	EDIT_TODO,
 } from "./actionTypes";
 
 const initialState = { todos: [], filter: "ALL" };
@@ -45,6 +46,16 @@ const todoReducer = (state = initialState, action) => {
 			return {
 				todos: state.todos,
 				filter: action.payload.filter,
+			};
+
+		case EDIT_TODO:
+			return {
+				todos: state.todos.map((todo, index) =>
+					index === action.payload.id
+						? { ...todo, text: action.payload.newText }
+						: todo
+				),
+				filter: state.filter,
 			};
 
 		default:

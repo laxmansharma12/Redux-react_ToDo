@@ -4,6 +4,7 @@ import {
 	MARK_COMPLETED,
 	MARK_INCOMPLETE,
 	FILTER_TODOS,
+	EDIT_TODO,
 } from "./actionTypes";
 
 export const addTodo = (text) => ({
@@ -29,4 +30,9 @@ export const markIncomplete = (id) => ({
 export const filterTodos = (filter) => ({
 	type: FILTER_TODOS,
 	payload: { filter },
+});
+
+export const editTodo = (id, newText) => ({
+	type: EDIT_TODO,
+	payload: { id, newText },
 });
