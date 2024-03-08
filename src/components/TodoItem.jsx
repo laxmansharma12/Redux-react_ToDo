@@ -1,5 +1,10 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import {
+	MdDelete,
+	MdCheckBoxOutlineBlank,
+	MdOutlineCheckBox,
+} from "react-icons/md";
+
 import {
 	removeTodo,
 	markCompleted,
@@ -9,38 +14,46 @@ import {
 const TodoItem = ({ todo, index }) => {
 	const dispatch = useDispatch();
 
-	const [editedTodo, setEditedTodo] = useState(todo.text);
-
 	const handelEdit = (e) => {
 		const newText = e.target.value;
-		setEditedTodo(newText);
 		if (newText.trim() !== "") {
 			dispatch(editTodo(index, newText.trim()));
 		}
 	};
 
 	return (
-		<li>
-			<div>
-				<span>{index + 1}.</span>
+		<li className="listITem">
+			{!todo.completed && (
+				<button
+					className="unchecked"
+					onClick={() => dispatch(markCompleted(index))}
+				>
+					<MdCheckBoxOutlineBlank />
+				</button>
+			)}
+			{todo.completed && (
+				<button
+					className="checked"
+					onClick={() => dispatch(markIncomplete(index))}
+				>
+					<MdOutlineCheckBox />
+				</button>
+			)}
+
+			<div className="itemContainer">
 				<input
+					className="item"
 					style={{
 						textDecoration: todo.completed ? "line-through" : "none",
-						border: "none",
 					}}
 					type="text"
-					value={editedTodo}
+					value={todo.text}
 					onChange={(e) => handelEdit(e)}
 				/>
-			</div>
-			<div>
-				<button onClick={() => dispatch(removeTodo(index))}>Delete</button>
-				{!todo.completed && (
-					<button onClick={() => dispatch(markCompleted(index))}>🮱</button>
-				)}
-				{todo.completed && (
-					<button onClick={() => dispatch(markIncomplete(index))}>x</button>
-				)}
+				<MdDelete
+					className="removeBtn"
+					onClick={() => dispatch(removeTodo(index))}
+				/>
 			</div>
 		</li>
 	);

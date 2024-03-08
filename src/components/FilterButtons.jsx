@@ -11,16 +11,15 @@ const FilterButtons = () => {
 	};
 
 	return (
-		<div>
-			<select
-				value={currentFilter}
-				onChange={(e) => handleFilter(e.target.value)}
-			>
-				<option value="ALL">All</option>
-				<option value="COMPLETED">Completed</option>
-				<option value="INCOMPLETE">Active</option>
-			</select>
-		</div>
+		<select
+			className="filter"
+			value={currentFilter}
+			onChange={(e) => handleFilter(e.target.value)}
+		>
+			<option value="ALL">All</option>
+			<option value="COMPLETED">Completed</option>
+			<option value="INCOMPLETE">Active</option>
+		</select>
 	);
 };
 

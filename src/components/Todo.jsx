@@ -20,24 +20,28 @@ const Todo = () => {
 	};
 
 	return (
-		<div>
-			<h4>ToDo </h4>
-			<div>
-				<input
-					type="text"
-					id="addTodoInput"
-					placeholder="Type your Todo"
-					value={newTodoText}
-					onChange={(e) => setNewTodoText(e.target.value)}
-				/>
-				<button onClick={handleAddTodoClick}>ADD </button>
-			</div>
+		<div className="container">
+			<div className="form">
+				<h1>ToDo List </h1>
+				<div className="inputSection">
+					<input
+						type="text"
+						id="addTodoInput"
+						placeholder="Type your Todo"
+						value={newTodoText}
+						onChange={(e) => setNewTodoText(e.target.value)}
+					/>
+					<button className="add" onClick={handleAddTodoClick}>
+						ADD
+					</button>
+				</div>
 
-			<div>
-				<FilterButtons />
-			</div>
+				<div>
+					<FilterButtons />
+				</div>
 
-			<TodoList />
+				<TodoList />
+			</div>
 		</div>
 	);
 };
